@@ -1,0 +1,6 @@
+site_name: AI X Lab Technical Documentation
+nav:
+  - Home: index.md
+  - About: about.md
+  - Useful Software: software.md
+theme: readthedocs

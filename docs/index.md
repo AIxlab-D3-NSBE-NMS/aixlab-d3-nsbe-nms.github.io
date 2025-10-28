@@ -1,4 +1,4 @@
-# Welcome to MkDocs
+# Technical documentation for software and recording parameters
 
 For full documentation visit [mkdocs.org](https://www.mkdocs.org).
 

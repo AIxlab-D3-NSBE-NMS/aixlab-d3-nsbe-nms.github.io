@@ -3,18 +3,18 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://aixlab-d3-nsbe-nms.github.io/docs/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://aixlab-d3-nsbe-nms.github.io/editdocs/" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Documentation - AI X Lab Technical Documentation</title>
+    <title>Editing the docs - AI X Lab Technical Documentation</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Documentation";
-        var mkdocs_page_input_path = "docs.md";
-        var mkdocs_page_url = "/docs/";
+        var mkdocs_page_name = "Editing the docs";
+        var mkdocs_page_input_path = "editdocs.md";
+        var mkdocs_page_url = "/editdocs/";
       </script>
     
     <!--[if lt IE 9]>
@@ -44,7 +44,11 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../about/">About</a>
+                <li class="toctree-l1"><a class="" href="../infra.md">Infrastructure</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="" href="../howto.md">Procedures and Instructions</a>
                 </li>
               </ul>
               <ul>
@@ -52,13 +56,17 @@
                 </li>
               </ul>
               <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="#">Documentation</a>
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Editing the docs</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#project-layout">Project layout</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#commands">Commands</a>
     </li>
     </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../about/">About</a>
                 </li>
               </ul>
       </div>
@@ -75,9 +83,9 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
-      <li class="breadcrumb-item active">Documentation</li>
+      <li class="breadcrumb-item active">Editing the docs</li>
     <li class="wy-breadcrumbs-aside">
-          <a href="https://github.com/aixlab-d3-nsbe-nms/aixlab-d3-nsbe-nms.github.io/edit/main/docs/docs.md" class="icon icon-github"> Edit on GitHub</a>
+          <a href="https://github.com/aixlab-d3-nsbe-nms/aixlab-d3-nsbe-nms.github.io/edit/main/docs/editdocs.md" class="icon icon-github"> Edit on GitHub</a>
     </li>
   </ul>
   <hr/>
@@ -94,12 +102,11 @@ docs/
     index.md  # The documentation homepage.
     ...       # Other markdown pages, images and other files.
 </code></pre>
-<h2 id="commands">Commands</h2>
+<h3 id="commands">Commands</h3>
 <p>It is useful to have <code>mkdocs</code> installed as it allows local serve and autoreload before pushing changes to GitHub. Here's a list of useful commands:</p>
 <ul>
-<li><code>mkdocs new [dir-name]</code> - Create a new project.</li>
-<li><code>mkdocs serve</code> - Start the live-reloading docs server.</li>
-<li><code>mkdocs build</code> - Build the documentation site.</li>
+<li><code>mkdocs serve</code> - Start the live-reloading docs server. Open localhost:8000 on browser for the website live preview</li>
+<li><code>mkdocs gh-deploy</code> - builds and deploys the changes to the gh-pages branch. This is the default branch where github builds the webpage from. This has been automated via the workflow in .github/workflows at every push to main. You can run it, but you shouldn't need to. Check out the build progress after every push in <a href="https://github.com/aixlab-d3-nsbe-nms/aixlab-d3-nsbe-nms.github.io/actions">Github Actions</a></li>
 <li><code>mkdocs -h</code> - Print help message and exit.</li>
 </ul>
               
@@ -107,6 +114,7 @@ docs/
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
         <a href="../software/" class="btn btn-neutral float-left" title="Useful Software"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../about/" class="btn btn-neutral float-right" title="About">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -135,6 +143,8 @@ docs/
     
       <span><a href="../software/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
+    
+      <span><a href="../about/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

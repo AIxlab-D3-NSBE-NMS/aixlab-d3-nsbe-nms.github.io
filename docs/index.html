@@ -5,15 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>About - AI X Lab Technical Documentation</title>
+    <title>Documentation - AI X Lab Technical Documentation</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "About";
-        var mkdocs_page_input_path = "about.md";
+        var mkdocs_page_name = "Documentation";
+        var mkdocs_page_input_path = "docs.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -43,16 +43,22 @@
                 <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
                 </li>
               </ul>
-              <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="./">About</a>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../about/">About</a>
                 </li>
               </ul>
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../software/">Useful Software</a>
                 </li>
               </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../docs/">Documentation</a>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Documentation</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#project-layout">Project layout</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#commands">Commands</a>
+    </li>
+    </ul>
                 </li>
               </ul>
       </div>
@@ -69,7 +75,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
-      <li class="breadcrumb-item active">About</li>
+      <li class="breadcrumb-item active">Documentation</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -78,14 +84,28 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <p>The AI X Lab is part of the Digital Data and Design Institute (D^3) by the NOVA School of Business and Economics, NOVA Medical School and the Harvard University</p>
-<p>Documentation written by Diogo Duarte (https://github.com/diogoflduarte) 2026</p>
+                <h1 id="editing-this-documentation-page">Editing this Documentation Page</h1>
+<p>This website was created using <code>mkdocs</code>. To modify these instructions, clone the repository.
+Individual pages in the website cn be edited in <code>docs/</code>. To create a new page, create a new <code>.md</code> file in <code>docs/</code> and add the filename in <code>mkdocs.yml</code>.</p>
+<h3 id="project-layout">Project layout</h3>
+<pre><code>mkdocs.yml    # The configuration file.
+docs/
+    index.md  # The documentation homepage.
+    ...       # Other markdown pages, images and other files.
+</code></pre>
+<h2 id="commands">Commands</h2>
+<p>It is useful to have <code>mkdocs</code> installed as it allows local serve and autoreload before pushing changes to GitHub. Here's a list of useful commands:</p>
+<ul>
+<li><code>mkdocs new [dir-name]</code> - Create a new project.</li>
+<li><code>mkdocs serve</code> - Start the live-reloading docs server.</li>
+<li><code>mkdocs build</code> - Build the documentation site.</li>
+<li><code>mkdocs -h</code> - Print help message and exit.</li>
+</ul>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href=".." class="btn btn-neutral float-left" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../software/" class="btn btn-neutral float-right" title="Useful Software">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../software/" class="btn btn-neutral float-left" title="Useful Software"><span class="icon icon-circle-arrow-left"></span> Previous</a>
     </div>
 
   <hr/>
@@ -108,10 +128,8 @@
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href=".." style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../software/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
-    
-      <span><a href="../software/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

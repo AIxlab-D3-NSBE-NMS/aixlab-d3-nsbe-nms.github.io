@@ -1,4 +1,4 @@
 The AI X Lab is part of the Digital Data and Design Institute (D^3) by the NOVA School of Business and Economics, NOVA Medical School and the Harvard University
 
 
-Documentation written by Diogo Duarte (https://github.com/diogoflduarte) 2026
+Documentation written by [Diogo Duarte](https://github.com/diogoflduarte). 2026

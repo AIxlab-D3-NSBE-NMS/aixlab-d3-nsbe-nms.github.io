@@ -5,3 +5,7 @@ nav:
   - Useful Software: software.md
   - Documentation: docs.md
 theme: readthedocs
+
+site_url: https://aixlab-d3-nsbe-nms.github.io/
+repo_url: https://github.com/aixlab-d3-nsbe-nms/aixlab-d3-nsbe-nms.github.io
+edit_uri: edit/main/docs/

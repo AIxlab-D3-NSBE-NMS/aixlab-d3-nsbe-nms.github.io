@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://aixlab-d3-nsbe-nms.github.io/software/">
+        <link rel="canonical" href="https://aixlab-d3-nsbe-nms.github.io/infra/">
       
       
-        <link rel="prev" href="../infra/">
+        <link rel="prev" href="..">
       
       
-        <link rel="next" href="../editdocs/">
+        <link rel="next" href="../software/">
       
       
         
@@ -25,7 +25,7 @@
     
     
       
-        <title>Useful Software - AI X Lab Technical Documentation</title>
+        <title>Infrastructure - AI X Lab Technical Documentation</title>
       
     
     
@@ -75,6 +75,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#laboratory-infrastructure" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -107,7 +112,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Useful Software
+              Infrastructure
             
           </span>
         </div>
@@ -277,10 +282,37 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../infra/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Infrastructure
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -296,6 +328,48 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-room" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The room
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#local-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Local Network
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -331,17 +405,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../software/" class="md-nav__link">
         
   
   
@@ -357,7 +424,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -433,6 +499,38 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-room" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The room
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#local-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Local Network
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -452,9 +550,66 @@
   
 
 
-  <h1>Useful Software</h1>
+<h1 id="laboratory-infrastructure">Laboratory Infrastructure</h1>
+<h2 id="the-room">The room</h2>
+<p>Room A205 is approximately 10 by 12 meters, projected to a maximum of 120 participants distributed over 22 stations.</p>
+<p>Flexible layouts are allowed as long as they avoid the main structural pillar and the two doors.</p>
+<p>Within these constraints any layout can be requested. If you are a prospective user, feel free to specify your preferred layout using the <a href="https://aixlab-d3-nsbe-nms.github.io/a205_layout">web tool</a>. </p>
+<div class="admonition info">
+<p>Make sure to save your layout in an <code>xml</code> file if you'd like it to be added to the template layouts.</p>
+</div>
+<h2 id="local-network">Local Network</h2>
+<p>The technical floor features 22 outlets with RJ45 ethernet ports, one per workstation. On the opposite end, these converge into a 48 port switch. </p>
+<p>Additionally, there is a Synology NAS, used for data storage and netboot, connected to the switch.  </p>
+<pre class="mermaid"><code>flowchart TB
+    NAS["🗄️ Synology NAS&lt;br/&gt;&lt;i&gt;storage + netboot&lt;/i&gt;"]
+    SW["🔀 Switch (48 port)"]
+    WS1["💻 Workstation 1"]
+    WS2["💻 Workstation 2"]
+    WS3["💻 Workstation 3"]
+    WS22["💻 Workstation 22"]
 
-
+    NAS --- SW
+    SW --- WS1
+    SW --- WS2
+    SW --- WS3
+    SW --- ...
+    SW --- WS22</code></pre>
+<p>The lab LAN is local and offline (cannot be accessed via internet). IPs arestatically attributed according with the following rules:</p>
+<table>
+<thead>
+<tr>
+<th>IP range</th>
+<th>Use for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0 - 99</td>
+<td>Free</td>
+</tr>
+<tr>
+<td>100</td>
+<td>controller / labadmin</td>
+</tr>
+<tr>
+<td>101-122</td>
+<td>Workstations 1 to 22</td>
+</tr>
+<tr>
+<td>123-200</td>
+<td>Free</td>
+</tr>
+<tr>
+<td>201</td>
+<td>Synology NAS</td>
+</tr>
+<tr>
+<td>202-254</td>
+<td>Free</td>
+</tr>
+</tbody>
+</table>
 
 
 

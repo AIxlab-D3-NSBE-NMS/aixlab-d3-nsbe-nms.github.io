@@ -6,8 +6,50 @@ nav:
   - Useful Software: software.md
   - Editing the docs: editdocs.md
   - About: about.md
-theme: readthedocs
 
 site_url: https://aixlab-d3-nsbe-nms.github.io/
 repo_url: https://github.com/aixlab-d3-nsbe-nms/aixlab-d3-nsbe-nms.github.io
 edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  features:
+    - navigation.expand       # sidebar items expanded
+    - navigation.top          # back-to-top button
+    - search.highlight
+    - content.code.copy
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: teal        # or: white, grey, blue grey, teal
+      accent: grey
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: blue grey
+      accent: teal
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  icon:
+    repo: fontawesome/brands/github
+
+markdown_extensions:
+  - admonition              # nice note/warning callouts
+  - attr_list
+  - md_in_html
+  - toc:
+      permalink: false
+  - pymdownx.highlight:
+      anchor_linenums: false
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true

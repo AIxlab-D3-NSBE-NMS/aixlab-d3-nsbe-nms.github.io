@@ -110,19 +110,213 @@ This allows booting from Ethernet into a Clonezilla environment to restore or ba
 In the event that a computer doesn't have a defined IP address, it should still be able to join the LAN. the Synology NAS has an active DHCP Server to attribute an available IP to a machine that requests it, but this is not usually needed since you should set the IP address manually anyway.
 
 
+## Workstation setup
+
+### Operating system
+
+Lab workstations run **Linux**, with two recommended distributions:
+
+- **Linux Mint** — preferred choice for experiment workstations.
+- **Ubuntu 24.04 LTS** — equivalent alternative, used where Mint is not suitable.
+
+**Windows is avoided** for experiment machines. It is considered inappropriate due to mandatory online login requirements, intrusive background processes, forced updates, and general OS interference that can disrupt timing-sensitive recordings or task execution. Windows workstations may exist for administrative or analysis purposes, but not for running experiments.
+
+### User accounts
+
+Each experiment workstation is configured with **two local accounts**:
+
+|  <div style="width:80px">Account</div> | Type | Purpose | Authentication |
+|---|---|---|---|
+| `labadmin` | Administrator (sudo) | Installation, configuration, maintenance, and troubleshooting. | Password-protected (credentials held by lab admins). |
+| `participant` | Standard (no sudo) | Used during experiment sessions by participants and operators. | **Passwordless**, with **automatic login** on boot. |
+
+The `participant` account is intentionally stripped of friction: no password prompt, no login screen, no account chooser. This ensures a clean, distraction-free start to every session and avoids participants ever seeing administrative interfaces. Because the account has no administrative privileges, system-level changes cannot be made from within a session. Installation and configuration always go through `labadmin`.
+
+!!! warning
+    Passwordless login on `participant` accounts relies on the assumption that **physical access to the lab is restricted**. Since the `datadump` storage folder is the only location with open access, it is crucial that it does not contain data. See more in [storage server](#1-storage-server).
+
+
+### Network access
+
+Experiment workstations connect to the institutional network via **eduroam**, using **PEAP with MSCHAPv2** authentication.
+
+A **shared list of eduroam credential sets** was provided by **IT** and is **stored on the Synology NAS**. These credentials should be used for all lab equipment.
 
 ## Experiment structure
 
 
-todo: schematic of workstation with recording devices
+Acquisitions in the lab are designed to be **task-agnostic**: the lab provides a standardised recording infrastructure, and the experimental task itself (cognitive paradigm, AI workshop, behavioural study, etc.) runs on top of it.
 
-### Workstation setup
+The typical setup brings a group of participants into the lab, distributed across the 22 stations. Each station is a self-contained recording unit with:
 
-todo: operating system, participant accounts, internet access
+- A **workstation computer**, cloned from a common system image (see [PXE Server](#2-pxe-server)) so that every station is software-identical.
+- A **360° omnidirectional camera**, currently the [Meeting Owl 4+](https://owllabs.com/products/meeting-owl-4-plus), USB-C connected to the workstation.
+- Optional peripherals depending on the experiment (eye tracker, physiological sensors, VR hedasets, etc.).
 
-### Data streams and storage
+All workstations are wired into the lab [LAN](#local-network) and coordinated by a **controller machine** (`192.168.10.100`), which issues start/stop commands, monitors recording status, and triggers post-experiment backup to `datadump` on the NAS. More on controller setup can be found in [Control and Automation](#control-and-automation).
 
 
-### Control and automation
+```mermaid
+flowchart TB
+    CTRL["🎛️ Controller<br/><i>192.168.10.100</i>"]
+    SW["🔀 Switch (48 port)"]
+    NAS["🗄️ Synology NAS<br/><i>192.168.10.201</i>"]
 
-ansible
+    CTRL --- SW
+    NAS --- SW
+
+    subgraph WS1["Station 1 — 192.168.10.101"]
+        PC1["💻 Workstation"]
+        CAM1["📷 360° camera"]
+        OPT1["👁️ Eye tracker<br/>Other sensors<br/><i>(optional)</i>"]
+        CAM1 -.-> PC1
+        OPT1 -.-> PC1
+    end
+
+    subgraph WS2["Station 2 — 192.168.10.102"]
+        PC2["💻 Workstation"]
+        CAM2["📷 360° camera"]
+        OPT2["👁️ Eye tracker<br/>Other sensors<br/><i>(optional)</i>"]
+        CAM2 -.-> PC2
+        OPT2 -.-> PC2
+    end
+
+    subgraph WSN["Station 22 — 192.168.10.122"]
+        PCN["💻 Workstation"]
+        CAMN["📷 360° camera"]
+        OPTN["👁️ Eye tracker<br/>Other sensors<br/><i>(optional)</i>"]
+        CAMN -.-> PCN
+        OPTN -.-> PCN
+    end
+
+    SW --- PC1
+    SW --- PC2
+    SW --- PCN
+```
+
+!!! info "Reading the schematic"
+    Solid lines are **always-present** connections (camera + LAN). Dashed lines indicate **optional** peripherals that depend on the specific experiment being run.
+
+A typical experiment will have the following timeline:
+
+[this is a comment]: #
+[symbols can be inserted using a reference between colon, for example :clapper:]: #
+[however mermaid does not allow that syntax inside the flowcharts. instead copy the emoji directly from emojipedia]: #
+[emoji reference in https://unicode.org/emoji/charts/full-emoji-list.html and https://emojipedia.org/]: #
+
+
+```mermaid
+sequenceDiagram
+    participant C as Controller
+    participant W as Workstation
+    participant N as NAS
+
+    C->>W: test recording
+    C->>W: start recording
+    Note over W: task
+    C->>W: stop recording
+    W->>N: backup to datadump
+    C->>W: cleanup
+```
+
+
+## Data streams and storage
+
+### Local recording location
+
+Each workstation writes all experiment data to a **top-level directory at the filesystem root** called `/data`.
+
+This location is deliberate. Placing `data` at the root (rather than inside a user's home directory) ensures that **both `labadmin` and `participant` accounts can read and write to it without permission conflicts**. It also keeps recordings outside any single account's home, which simplifies backup, cleanup, and reinstalls.
+
+Inside `/data`, there is **one subfolder per recording device**. Each device writes only to its own subfolder, which keeps streams cleanly separated and makes per-device troubleshooting straightforward.
+
+### Local directory structure
+
+A typical workstation's `/data` directory should look like this:
+
+```
+/data
+├── screen/                     # the computer screen
+│   └── <recording files>
+├── owl/                        # omnidirectional camera
+│   └── <recording files>
+├── eyetracker/
+│   └── <recording files>
+├── microphone/
+│   └── <recording files>
+├── eeg/
+│   └── <recording files>
+└── motion-capture/
+│   └── <recording files>
+│ ...
+```
+
+The exact set of subfolders depends on which devices are recording on a given workstation. The naming convention is **one folder per device, named after the device or modality** (not after the manufacturer or software).
+
+### Synchronization to the storage server
+
+At the end of an experiment session, the entire contents of `/data` are **synchronized to the Synology NAS**, into a folder named after the originating workstation:
+
+```
+NAS:/datadump
+├── workstation-1/
+│   ├── screen/
+│   ├── owl/
+│   └── ...
+├── workstation-2/
+│   ├── screen/
+│   ├── owl/
+│   └── ...
+├── workstation-3/
+│   └── ...
+└── ...
+```
+
+This means the **server-side layout mirrors the local layout**, with the workstation name as an extra top-level grouping.
+
+
+## Control and automation
+
+Workstation control across the lab is handled with [**Ansible**](https://docs.ansible.com/). Rather than logging into each machine individually to start recordings, install software, or move data, the operator runs playbooks from a single control node and Ansible executes the steps on every targeted workstation in parallel.
+
+The lab maintains two sets of Ansible artefacts, kept together with other lab tooling in a dedicated git repository:
+
+**Repository:** [`orchestra/ansible`](https://github.com/AIxlab-D3-NSBE-NMS/orchestra/tree/main/ansible)
+
+- **Inventory files (`inventory.ini`)** — one per experiment (or experiment configuration). Each inventory file declares which workstations participate in that experiment and groups them as needed. 
+- **Playbook files (`*.yml`)** — one per operational action. The current set covers:
+    - Uploading experiment files to the target workstations.
+    - Installing general system packages via `apt`.
+    - Starting recording on all targeted workstations.
+    - Stopping recording.
+    - Uploading recorded data from `/data` to the Synology NAS.
+    - Rebooting workstations.
+
+Together, the `inventory` + `playbook` pair is enough to drive a full experiment session end-to-end without manually touching individual machines.
+
+### Connection model
+
+Ansible connects to workstations over **SSH**, using **one of two accounts depending on the task**:
+
+| Account | Used for |
+|---|---|
+| `labadmin` | Tasks that require elevated privileges — `apt` installs, system configuration, reboots, anything needing `sudo`. |
+| `participant` | Tasks that run in the participant's normal environment — starting/stopping recordings, uploading session data, managing experiment files. |
+
+!!! tip "LAN vs WiFi"
+    `ansible` relies on `ssh`, which is supported on ethernet or wifi. On occasion, we have had to use wifi, but it is not recommended since wifi connections may drop and they require more careful confirmation that the commands went through. They also have higher latency and IP addresses often change. All those issues are solved by using the lab LAN over ethernet.
+
+### SSH keys
+
+Authentication is **key-based, not password-based**. Each workstation has its **authorized SSH keys pre-installed** on both the `labadmin` and `participant` accounts, so the Ansible control node can reach any machine without prompting for credentials during standard tasks.
+
+!!! info "SSH keys"
+    SSH keys are generated on one machine (example, the lab admin's computer) and deployed to all workstations. The stored system images already contain the keys, so unless a system image is built from scratch there is no need to deploy ssh keys.  
+
+!!! info "`ansible` for `sudo` commands"
+    If you run `ansible` commands that require privilege escalation, like `reboot`, you need to supply the admin pass via [`--ask-become-pass`](https://docs.ansible.com/projects/ansible/latest/playbook_guide/playbooks_privilege_escalation.html).
+
+
+
+!!! question "New to Ansible?"
+    If you have not used Ansible before, the official [**"Getting started with Ansible"**](https://docs.ansible.com/ansible/latest/getting_started/index.html) guide is the recommended entry point and covers everything needed to read and run the lab's playbooks.

@@ -1,4 +1,4 @@
-site_name: AI X Lab Technical Documentation
+site_name: AI X Lab Wiki
 nav:
   - Home: index.md
   - Infrastructure: infra.md
@@ -14,15 +14,15 @@ edit_uri: edit/main/docs/
 theme:
   name: material
   features:
-    - navigation.expand       # sidebar items expanded
-    - navigation.top          # back-to-top button
+    - navigation.expand # sidebar items expanded
+    - navigation.top # back-to-top button
     - search.highlight
     - content.code.copy
     - toc.integrate
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
-      primary: teal        # or: white, grey, blue grey, teal
+      primary: teal # or: white, grey, blue grey, teal
       accent: grey
       toggle:
         icon: material/brightness-7
@@ -36,9 +36,11 @@ theme:
         name: Switch to light mode
   icon:
     repo: fontawesome/brands/github
+  logo: img/dcube.png
+  favicon: img/favicon.ico
 
 markdown_extensions:
-  - admonition              # nice note/warning callouts
+  - admonition # nice note/warning callouts
   - attr_list
   - md_in_html
   - toc:

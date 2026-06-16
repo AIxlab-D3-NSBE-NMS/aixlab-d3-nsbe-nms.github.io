@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://aixlab-d3-nsbe-nms.github.io/howto/">
+        <link rel="canonical" href="https://aixlab-d3-nsbe-nms.github.io/admin/">
       
       
         <link rel="prev" href="../infra/">
       
       
-        <link rel="next" href="../editdocs/">
+        <link rel="next" href="../expcontrol/">
       
       
         
@@ -25,7 +25,7 @@
     
     
       
-        <title>Procedures and Instructions - AI X Lab Wiki</title>
+        <title>Lab Admin - AI X Lab Wiki</title>
       
     
     
@@ -111,7 +111,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Procedures and Instructions
+              Lab Admin
             
           </span>
         </div>
@@ -328,7 +328,7 @@
   <span class="md-ellipsis">
     
   
-    Procedures and Instructions
+    Lab Admin
   
 
     
@@ -346,7 +346,7 @@
   <span class="md-ellipsis">
     
   
-    Procedures and Instructions
+    Lab Admin
   
 
     
@@ -372,10 +372,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#onboarding-a-new-operator" class="md-nav__link">
+  <a href="#onboarding-a-new-ai-x-lab-employee" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Onboarding a new operator
+        Onboarding a new AI X Lab employee
       
     </span>
   </a>
@@ -433,10 +433,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#managing-data-on-the-synology-nas" class="md-nav__link">
+  <a href="#accessing-and-managing-the-synology-nas" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Managing data on the Synology NAS
+        Accessing and managing the Synology NAS
       
     </span>
   </a>
@@ -469,14 +469,41 @@
   
   
     <li class="md-nav__item">
-      <a href="../software.md" class="md-nav__link">
+      <a href="../expcontrol/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Useful Software
+    Experiments
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../resources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resources
   
 
     
@@ -565,7 +592,7 @@
 
 <h1 id="lab-management-and-system-administration">Lab management and system administration</h1>
 <p>This page guides you on how to manage the lab. Make sure you've gone through <a href="../infra/">Infrastructure</a> first.</p>
-<h2 id="onboarding-a-new-operator">Onboarding a new operator</h2>
+<h2 id="onboarding-a-new-ai-x-lab-employee">Onboarding a new AI X Lab employee</h2>
 <p>Generate an SSH key (ed25519)
 Upload your public key to the <code>labadmin</code> storage on the Synology NAS
 Get access to the Ansible repository
@@ -590,7 +617,7 @@ Install and configure eduroam with an assigned <code>userN</code> credential set
 Install SSH server and deploy authorized keys from the NAS
 Add the workstation to the relevant inventory file(s)
 Smoke test against the new host</p>
-<h2 id="managing-data-on-the-synology-nas">Managing data on the Synology NAS</h2>
+<h2 id="accessing-and-managing-the-synology-nas">Accessing and managing the Synology NAS</h2>
 <p>Directory layout under <code>/datadump</code>
 Accessing the NAS from a workstation vs. from a personal machine
 Retention and archival expectations

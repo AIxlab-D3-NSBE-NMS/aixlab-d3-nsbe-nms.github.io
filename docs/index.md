@@ -10,9 +10,9 @@ However the access is public, so if you are a prospective user, feel free to exp
 | I want to… | Go to |
 |---|---|
 | Understand how the lab is wired and configured | [Infrastructure](infra.md) |
-| Configure workstations, centralize access, manage data | [Lab Procedures](howto.md) |
+| Configure workstations, centralize access, manage data | [Lab Admin](howto.md) |
 | Set up experiments, control workstations, acquire data | [Experiments](expcontrol.md) |
-| Find recommended tools and software | [Useful Resources](resources.md) |
+| Find recommended tools and software | [Resources](resources.md) |
 | Edit or contribute to this documentation | [Editing the docs](editdocs.md) |
 | Know more about the lab | [About](about.md) |
 

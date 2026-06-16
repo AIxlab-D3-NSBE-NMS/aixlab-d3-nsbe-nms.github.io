@@ -1,11 +1,12 @@
 site_name: AI X Lab Wiki
 nav:
-  - Home: index.md
-  - Infrastructure: infra.md
-  - Procedures and Instructions: howto.md
-  - Useful Software: software.md
+  - Home:             index.md
+  - Infrastructure:   infra.md
+  - Lab Admin:        admin.md
+  - Experiments:      expcontrol.md
+  - Resources:        resources.md
   - Editing the docs: editdocs.md
-  - About: about.md
+  - About:            about.md
 
 site_url: https://aixlab-d3-nsbe-nms.github.io/
 repo_url: https://github.com/aixlab-d3-nsbe-nms/aixlab-d3-nsbe-nms.github.io
@@ -60,6 +61,9 @@ markdown_extensions:
   - pymdownx.highlight
   - pymdownx.tasklist:
       custom_checkbox: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
   - pymdownx.keys
   - pymdownx.mark
   - footnotes

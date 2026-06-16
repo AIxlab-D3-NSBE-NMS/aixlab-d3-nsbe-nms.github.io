@@ -2,7 +2,7 @@
 
 This page guides you on how to manage the lab. Make sure you've gone through [Infrastructure](infra.md) first.
 
-## Onboarding a new operator
+## Onboarding a new AI X Lab employee
 Generate an SSH key (ed25519)
 Upload your public key to the `labadmin` storage on the Synology NAS
 Get access to the Ansible repository
@@ -35,7 +35,7 @@ Install SSH server and deploy authorized keys from the NAS
 Add the workstation to the relevant inventory file(s)
 Smoke test against the new host
 
-## Managing data on the Synology NAS
+## Accessing and managing the Synology NAS
 Directory layout under `/datadump`
 Accessing the NAS from a workstation vs. from a personal machine
 Retention and archival expectations

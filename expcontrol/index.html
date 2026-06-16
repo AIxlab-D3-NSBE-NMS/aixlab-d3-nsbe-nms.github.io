@@ -8,25 +8,27 @@
       
       
       
+        <link rel="canonical" href="https://aixlab-d3-nsbe-nms.github.io/expcontrol/">
+      
       
       
       
         
       
       
-      <link rel="icon" href="/img/favicon.ico">
+      <link rel="icon" href="../img/favicon.ico">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
-        <title>AI X Lab Wiki</title>
+        <title>Experiment setup and execution - AI X Lab Wiki</title>
       
     
     
-      <link rel="stylesheet" href="/assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="/assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -45,7 +47,7 @@
       
     
     
-    <script>__md_scope=new URL("/",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -69,6 +71,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#experiment-setup-and-execution" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -81,9 +88,9 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="/." title="AI X Lab Wiki" class="md-header__button md-logo" aria-label="AI X Lab Wiki" data-md-component="logo">
+    <a href=".." title="AI X Lab Wiki" class="md-header__button md-logo" aria-label="AI X Lab Wiki" data-md-component="logo">
       
-  <img src="/img/dcube.png" alt="logo">
+  <img src="../img/dcube.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -100,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              
+              Experiment setup and execution
             
           </span>
         </div>
@@ -218,9 +225,9 @@
 
 <nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="/." title="AI X Lab Wiki" class="md-nav__button md-logo" aria-label="AI X Lab Wiki" data-md-component="logo">
+    <a href=".." title="AI X Lab Wiki" class="md-nav__button md-logo" aria-label="AI X Lab Wiki" data-md-component="logo">
       
-  <img src="/img/dcube.png" alt="logo">
+  <img src="../img/dcube.png" alt="logo">
 
     </a>
     AI X Lab Wiki
@@ -247,7 +254,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/." class="md-nav__link">
+      <a href=".." class="md-nav__link">
         
   
   
@@ -274,7 +281,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/infra/" class="md-nav__link">
+      <a href="../infra/" class="md-nav__link">
         
   
   
@@ -301,7 +308,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/howto/" class="md-nav__link">
+      <a href="../howto/" class="md-nav__link">
         
   
   
@@ -328,7 +335,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/software.md" class="md-nav__link">
+      <a href="../software.md" class="md-nav__link">
         
   
   
@@ -355,7 +362,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/editdocs/" class="md-nav__link">
+      <a href="../editdocs/" class="md-nav__link">
         
   
   
@@ -382,7 +389,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/about/" class="md-nav__link">
+      <a href="../about/" class="md-nav__link">
         
   
   
@@ -415,8 +422,52 @@
               
               <article class="md-content__inner md-typeset">
                 
-  <h1>404 - Not found</h1>
+                  
 
+
+  
+  
+
+
+<h1 id="experiment-setup-and-execution">Experiment setup and execution</h1>
+<p>Audience: researchers and operators running studies. Read often, sometimes under time pressure right before a session.</p>
+<h2 id="setting-up-a-new-experiment">Setting up a new experiment</h2>
+<p>Creating an inventory file for the experiment
+Selecting which workstations and devices are involved
+Preparing experiment files for upload
+Dry run on a single workstation before going fleet-wide</p>
+<h2 id="pre-session-preparation">Pre-session preparation</h2>
+<p>Pre-session checklist (workstations on, devices connected, NAS reachable)
+Selecting the correct inventory file
+Uploading experiment files to the fleet</p>
+<h2 id="running-a-session">Running a session</h2>
+<p>Test recording
+Start recording
+During-task monitoring (what to watch, what to ignore)
+Stop recording</p>
+<h2 id="closing-a-session">Closing a session</h2>
+<p>Data backup to the NAS
+Verifying files landed correctly
+Workstation cleanup
+Post-session checklist</p>
+<h3 id="session-time-troubleshooting">Session-time troubleshooting</h3>
+<p>Recording device not detected
+   A workstation didn't start/stop with the others
+   Backup step partially failed
+   What to do if a session has to be aborted mid-task</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
               </article>
             </div>
           
@@ -459,10 +510,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "/", "features": ["navigation.expand", "navigation.top", "search.highlight", "content.code.copy", "toc.integrate"], "search": "/assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.expand", "navigation.top", "search.highlight", "content.code.copy", "toc.integrate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="/assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
       
     
   </body>

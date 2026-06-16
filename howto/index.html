@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://aixlab-d3-nsbe-nms.github.io/software/">
+        <link rel="canonical" href="https://aixlab-d3-nsbe-nms.github.io/howto/">
       
       
         <link rel="prev" href="../infra/">
@@ -25,7 +25,7 @@
     
     
       
-        <title>Useful Software - AI X Lab Wiki</title>
+        <title>Procedures and Instructions - AI X Lab Wiki</title>
       
     
     
@@ -75,6 +75,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#lab-management-and-system-administration" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -106,7 +111,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Useful Software
+              Procedures and Instructions
             
           </span>
         </div>
@@ -304,10 +309,37 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../howto.md" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Procedures and Instructions
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -323,6 +355,109 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#onboarding-a-new-operator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Onboarding a new operator
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#equipment-and-inventory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Equipment and Inventory
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Equipment and Inventory">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#maintenance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Maintenance
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#internet-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Internet access
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#set-up-a-new-workstation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Set-up a new workstation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#managing-data-on-the-synology-nas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Managing data on the Synology NAS
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -331,17 +466,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../software.md" class="md-nav__link">
         
   
   
@@ -357,7 +485,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -436,9 +563,44 @@
   
 
 
-  <h1>Useful Software</h1>
-
-
+<h1 id="lab-management-and-system-administration">Lab management and system administration</h1>
+<p>This page guides you on how to manage the lab. Make sure you've gone through <a href="../infra/">Infrastructure</a> first.</p>
+<h2 id="onboarding-a-new-operator">Onboarding a new operator</h2>
+<p>Generate an SSH key (ed25519)
+Upload your public key to the <code>labadmin</code> storage on the Synology NAS
+Get access to the Ansible repository
+Get access to the Synology NAS (credentials, share mounts)
+Distribute your key to the workstations
+Verify access by pinging the fleet with Ansible</p>
+<h2 id="equipment-and-inventory">Equipment and Inventory</h2>
+<h3 id="maintenance">Maintenance</h3>
+<p>System updates (when, how, which playbook)
+Clearing <code>/data</code> on workstations
+Checking free space on workstations and on the NAS
+Replacing or reimaging a workstation</p>
+<h2 id="internet-access">Internet access</h2>
+<p>credentials and hotspots</p>
+<h2 id="set-up-a-new-workstation">Set-up a new workstation</h2>
+<p>clonezilla instructions, hostname, accounts, ssh keys</p>
+<p>Install Linux Mint (or Ubuntu 24.04)
+Create the <code>labadmin</code> and <code>participant</code> accounts
+Configure passwordless auto-login for <code>participant</code>
+Create <code>/data</code> with correct cross-account permissions
+Install and configure eduroam with an assigned <code>userN</code> credential set
+Install SSH server and deploy authorized keys from the NAS
+Add the workstation to the relevant inventory file(s)
+Smoke test against the new host</p>
+<h2 id="managing-data-on-the-synology-nas">Managing data on the Synology NAS</h2>
+<p>Directory layout under <code>/datadump</code>
+Accessing the NAS from a workstation vs. from a personal machine
+Retention and archival expectations
+Restoring or re-syncing data if a backup step failed</p>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<p>Workstation unreachable via Ansible
+<code>/data</code> permission errors
+eduroam connection dropped
+Auto-login not working after reboot
+Backup to NAS failed or incomplete</p>
 
 
 

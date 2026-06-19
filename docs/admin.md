@@ -3,14 +3,16 @@
 This page guides you on how to manage the lab. Make sure you've gone through [Infrastructure](infra.md) first.
 
 ## Onboarding a new AI X Lab employee
-Generate an SSH key (ed25519)
-Upload your public key to the `labadmin` storage on the Synology NAS
-Get access to the Ansible repository
-Get access to the Synology NAS (credentials, share mounts)
-Distribute your key to the workstations
-Verify access by pinging the fleet with Ansible
+- [ ] Generate an SSH key (`ed25519`)
+- [ ] Upload your public key to the workstations
+- [ ] Verify access by pinging the fleet with Ansible
+- [ ] Get access to the Synology NAS (credentials, share mounts)
 
 ## Equipment and Inventory
+
+If you have internal access, equipment inventory is listed [here](https://novasbe365.sharepoint.com/:x:/r/sites/D3Institute/Shared%20Documents/01.%20AI%20Experimentation%20Lab/09.%20Equipment/D3_AIXLab_Inventory_2026.xlsx?d=w12fc23e8e89b419ba38152fd8f22bcc2&csf=1&web=1&e=SZdLSl).
+
+
 
 ### Maintenance
 System updates (when, how, which playbook)

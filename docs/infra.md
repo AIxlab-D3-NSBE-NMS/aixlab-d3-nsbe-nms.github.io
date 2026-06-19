@@ -320,3 +320,11 @@ Authentication is **key-based, not password-based**. Each workstation has its **
 
 !!! question "New to Ansible?"
     If you have not used Ansible before, the official [**"Getting started with Ansible"**](https://docs.ansible.com/ansible/latest/getting_started/index.html) guide is the recommended entry point and covers everything needed to read and run the lab's playbooks.
+
+## Inventory
+
+If you have internal access, [equipment inventory is listed here](https://novasbe365.sharepoint.com/:x:/r/sites/D3Institute/Shared%20Documents/01.%20AI%20Experimentation%20Lab/09.%20Equipment/D3_AIXLab_Inventory_2026.xlsx?d=w12fc23e8e89b419ba38152fd8f22bcc2&csf=1&web=1&e=SZdLSl).
+
+## Public calendar
+
+Feel free to [view or subscribe](https://outlook.office365.com/owa/calendar/dd163b1e835e4b8fb996e7070d696c2c@novasbe.pt/041b0f8ab2da43edac90f33ed20a22565499034006862705831/calendar.html).

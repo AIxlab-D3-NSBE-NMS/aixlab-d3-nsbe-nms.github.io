@@ -550,6 +550,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../calendar/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Calendar
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../about/" class="md-nav__link">
         
   
@@ -593,13 +620,14 @@
 <h1 id="lab-management-and-system-administration">Lab management and system administration</h1>
 <p>This page guides you on how to manage the lab. Make sure you've gone through <a href="../infra/">Infrastructure</a> first.</p>
 <h2 id="onboarding-a-new-ai-x-lab-employee">Onboarding a new AI X Lab employee</h2>
-<p>Generate an SSH key (ed25519)
-Upload your public key to the <code>labadmin</code> storage on the Synology NAS
-Get access to the Ansible repository
-Get access to the Synology NAS (credentials, share mounts)
-Distribute your key to the workstations
-Verify access by pinging the fleet with Ansible</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox"/><span class="task-list-indicator"></span></label> Generate an SSH key (<code>ed25519</code>)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox"/><span class="task-list-indicator"></span></label> Upload your public key to the workstations</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox"/><span class="task-list-indicator"></span></label> Verify access by pinging the fleet with Ansible</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox"/><span class="task-list-indicator"></span></label> Get access to the Synology NAS (credentials, share mounts)</li>
+</ul>
 <h2 id="equipment-and-inventory">Equipment and Inventory</h2>
+<p>If you have internal access, equipment inventory is listed <a href="https://novasbe365.sharepoint.com/:x:/r/sites/D3Institute/Shared%20Documents/01.%20AI%20Experimentation%20Lab/09.%20Equipment/D3_AIXLab_Inventory_2026.xlsx?d=w12fc23e8e89b419ba38152fd8f22bcc2&amp;csf=1&amp;web=1&amp;e=SZdLSl">here</a>.</p>
 <h3 id="maintenance">Maintenance</h3>
 <p>System updates (when, how, which playbook)
 Clearing <code>/data</code> on workstations

@@ -430,6 +430,51 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Set-up a new workstation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#system-image-restoration-via-clonezilla" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        System image restoration via Clonezilla
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="System image restoration via Clonezilla">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#detailed-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Detailed steps
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-restore-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Post-restore configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -636,15 +681,67 @@ Replacing or reimaging a workstation</p>
 <h2 id="internet-access">Internet access</h2>
 <p>credentials and hotspots</p>
 <h2 id="set-up-a-new-workstation">Set-up a new workstation</h2>
-<p>clonezilla instructions, hostname, accounts, ssh keys</p>
-<p>Install Linux Mint (or Ubuntu 24.04)
-Create the <code>labadmin</code> and <code>participant</code> accounts
-Configure passwordless auto-login for <code>participant</code>
-Create <code>/data</code> with correct cross-account permissions
-Install and configure eduroam with an assigned <code>userN</code> credential set
-Install SSH server and deploy authorized keys from the NAS
-Add the workstation to the relevant inventory file(s)
-Smoke test against the new host</p>
+<h3 id="system-image-restoration-via-clonezilla">System image restoration via Clonezilla</h3>
+<p>Workstations are provisioned using PXE boot and Clonezilla image restore. The process takes 10–30 minutes depending on image size.</p>
+<div class="highlight"><pre><span></span><code>Select a driver:
+
+❯ nvidia-driver-575 (recommended)
+  nvidia-driver-570
+  nvidia-driver-550
+  nouveau
+</code></pre></div>
+<pre class="mermaid"><code>flowchart TD
+    A["Power on workstation"] --&gt; B["Trigger PXE boot&lt;br/&gt;F12/F2/Esc at startup"]
+    B --&gt; C["Boot into Clonezilla"]
+    C --&gt; D["Select language &amp;&lt;br/&gt;keyboard layout"]
+    D --&gt; E["Choose Start Clonezilla&lt;br/&gt;image mode"]
+    E --&gt; F["Mount image repository&lt;br/&gt;NFS or SSH"]
+    F --&gt; G["Select workstation&lt;br/&gt;baseline image"]
+    G --&gt; H["Verify disk/partition&lt;br/&gt;layout"]
+    H --&gt; I["Start restore&lt;br/&gt;10-30 minutes"]
+    I --&gt; J["Reboot workstation"]
+    J --&gt; K["Begin post-restore&lt;br/&gt;setup"]</code></pre>
+<h4 id="detailed-steps">Detailed steps</h4>
+<p><strong>1. Boot via PXE</strong>
+- Power on the workstation and immediately trigger PXE boot (consult BIOS for boot menu key)
+- The workstation should automatically connect to the PXE server and boot into Clonezilla</p>
+<p><strong>2. Start Clonezilla</strong>
+- Select language and keyboard layout
+- Choose <strong>"Start Clonezilla"</strong> (not "Clonezilla lite-server")
+- Select <strong>image mode</strong> (restore from a saved image)</p>
+<p><strong>3. Mount the image repository</strong>
+- Select storage method: <strong>NFS</strong> or <strong>SSH</strong>
+- Mount point: <code>[PLACEHOLDER_IMAGE_SERVER]</code>
+- Image path: <code>[PLACEHOLDER_IMAGE_FOLDER]</code>
+- Authenticate if required</p>
+<p><strong>4. Select the image</strong>
+- Browse and select the standard workstation image (e.g., <code>workstation-baseline</code>)
+- Confirm image details: size, creation date, included partitions</p>
+<p><strong>5. Configure restore options</strong>
+- Optionally check image integrity before restoring
+- Disk/partition selection:
+  - Full disk restore: select target disk (usually <code>/dev/sda</code>)
+  - Partition restore: select specific partitions
+- Bootloader: skip GRUB if included in image; configure otherwise</p>
+<p><strong>6. Verify and execute</strong>
+- Review the restore summary (source, target, partitions)
+- <strong>Confirm target disk</strong> — this will overwrite all data
+- Start restore and wait for completion</p>
+<p><strong>7. Reboot</strong>
+- Once complete, reboot the workstation
+- Proceed to post-restore setup</p>
+<h3 id="post-restore-configuration">Post-restore configuration</h3>
+<p>After the system image has been restored:</p>
+<ul>
+<li>Set the hostname (e.g., <code>workstation-01</code>)</li>
+<li>Create the <code>labadmin</code> and <code>participant</code> accounts</li>
+<li>Configure passwordless auto-login for <code>participant</code></li>
+<li>Create <code>/data</code> with correct cross-account permissions</li>
+<li>Install and configure eduroam with an assigned <code>userN</code> credential set</li>
+<li>Install SSH server and deploy authorized keys from the NAS</li>
+<li>Add the workstation to the relevant inventory file(s)</li>
+<li>Smoke test against the new host</li>
+</ul>
 <h2 id="accessing-and-managing-the-synology-nas">Accessing and managing the Synology NAS</h2>
 <p>Directory layout under <code>/datadump</code>
 Accessing the NAS from a workstation vs. from a personal machine

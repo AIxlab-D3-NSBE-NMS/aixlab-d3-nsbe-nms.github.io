@@ -391,23 +391,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Equipment and Inventory">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#maintenance" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Maintenance
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -434,38 +417,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#system-image-restoration-via-clonezilla" class="md-nav__link">
+  <a href="#system-images-via-clonezilla" class="md-nav__link">
     <span class="md-ellipsis">
       
-        System image restoration via Clonezilla
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="System image restoration via Clonezilla">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#detailed-steps" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Detailed steps
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#post-restore-configuration" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Post-restore configuration
+        System images via Clonezilla
       
     </span>
   </a>
@@ -673,75 +628,243 @@
 </ul>
 <h2 id="equipment-and-inventory">Equipment and Inventory</h2>
 <p>If you have internal access, equipment inventory is listed <a href="https://novasbe365.sharepoint.com/:x:/r/sites/D3Institute/Shared%20Documents/01.%20AI%20Experimentation%20Lab/09.%20Equipment/D3_AIXLab_Inventory_2026.xlsx?d=w12fc23e8e89b419ba38152fd8f22bcc2&amp;csf=1&amp;web=1&amp;e=SZdLSl">here</a>.</p>
-<h3 id="maintenance">Maintenance</h3>
-<p>System updates (when, how, which playbook)
-Clearing <code>/data</code> on workstations
-Checking free space on workstations and on the NAS
-Replacing or reimaging a workstation</p>
 <h2 id="internet-access">Internet access</h2>
-<p>credentials and hotspots</p>
+<p>There are 35 credentials attributed to the AI X Lab for eduroam access but WITHOUT Outlook access. These should be used for lab equipment and can be found in the storage server under <code>labadmin/home</code>.</p>
 <h2 id="set-up-a-new-workstation">Set-up a new workstation</h2>
-<h3 id="system-image-restoration-via-clonezilla">System image restoration via Clonezilla</h3>
-<p>Workstations are provisioned using PXE boot and Clonezilla image restore. The process takes 10–30 minutes depending on image size.</p>
-<div class="highlight"><pre><span></span><code>Select a driver:
+<h3 id="system-images-via-clonezilla">System images via Clonezilla</h3>
+<p>Workstations are provisioned and backed up using PXE boot and Clonezilla. Restoring an image prepares a workstation from an existing baseline; saving an image captures a configured workstation as a reusable baseline on the Synology NAS.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Restoring an image</label><label for="__tabbed_1_2">Saving an image</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Use this workflow when provisioning a workstation from an existing image. The process usually takes 10–30 minutes depending on image size.</p>
+<p><strong>Step 1 — Boot via PXE</strong></p>
+<p>Power on the workstation and open the boot menu immediately. The exact key depends on the BIOS, but it is usually one of <span class="keys"><kbd class="key-f12">F12</kbd></span>, <span class="keys"><kbd class="key-f2">F2</kbd></span>, <span class="keys"><kbd class="key-escape">Esc</kbd></span>, or <span class="keys"><kbd class="key-delete">Del</kbd></span>.</p>
+<div class="highlight"><pre><span></span><code>Boot device selection:
 
-❯ nvidia-driver-575 (recommended)
-  nvidia-driver-570
-  nvidia-driver-550
-  nouveau
+❯ PXE / Network Boot
+  Internal SSD
+  USB Storage
+  BIOS setup
 </code></pre></div>
-<pre class="mermaid"><code>flowchart TD
-    A["Power on workstation"] --&gt; B["Trigger PXE boot&lt;br/&gt;F12/F2/Esc at startup"]
-    B --&gt; C["Boot into Clonezilla"]
-    C --&gt; D["Select language &amp;&lt;br/&gt;keyboard layout"]
-    D --&gt; E["Choose Start Clonezilla&lt;br/&gt;image mode"]
-    E --&gt; F["Mount image repository&lt;br/&gt;NFS or SSH"]
-    F --&gt; G["Select workstation&lt;br/&gt;baseline image"]
-    G --&gt; H["Verify disk/partition&lt;br/&gt;layout"]
-    H --&gt; I["Start restore&lt;br/&gt;10-30 minutes"]
-    I --&gt; J["Reboot workstation"]
-    J --&gt; K["Begin post-restore&lt;br/&gt;setup"]</code></pre>
-<h4 id="detailed-steps">Detailed steps</h4>
-<p><strong>1. Boot via PXE</strong>
-- Power on the workstation and immediately trigger PXE boot (consult BIOS for boot menu key)
-- The workstation should automatically connect to the PXE server and boot into Clonezilla</p>
-<p><strong>2. Start Clonezilla</strong>
-- Select language and keyboard layout
-- Choose <strong>"Start Clonezilla"</strong> (not "Clonezilla lite-server")
-- Select <strong>image mode</strong> (restore from a saved image)</p>
-<p><strong>3. Mount the image repository</strong>
-- Select storage method: <strong>NFS</strong> or <strong>SSH</strong>
-- Mount point: <code>[PLACEHOLDER_IMAGE_SERVER]</code>
-- Image path: <code>[PLACEHOLDER_IMAGE_FOLDER]</code>
-- Authenticate if required</p>
-<p><strong>4. Select the image</strong>
-- Browse and select the standard workstation image (e.g., <code>workstation-baseline</code>)
-- Confirm image details: size, creation date, included partitions</p>
-<p><strong>5. Configure restore options</strong>
-- Optionally check image integrity before restoring
-- Disk/partition selection:
-  - Full disk restore: select target disk (usually <code>/dev/sda</code>)
-  - Partition restore: select specific partitions
-- Bootloader: skip GRUB if included in image; configure otherwise</p>
-<p><strong>6. Verify and execute</strong>
-- Review the restore summary (source, target, partitions)
-- <strong>Confirm target disk</strong> — this will overwrite all data
-- Start restore and wait for completion</p>
-<p><strong>7. Reboot</strong>
-- Once complete, reboot the workstation
-- Proceed to post-restore setup</p>
-<h3 id="post-restore-configuration">Post-restore configuration</h3>
+<p>The workstation should connect to the Synology PXE server and boot into Clonezilla Live.</p>
+<p><strong>Step 2 — Start Clonezilla</strong></p>
+<p>Select the default language and keyboard options unless the workstation requires a different layout.</p>
+<div class="highlight"><pre><span></span><code>Clonezilla main menu:
+
+❯ Start Clonezilla
+  Enter_shell
+  Reboot
+  Poweroff
+</code></pre></div>
+<p>Then select image-based restore mode.</p>
+<div class="highlight"><pre><span></span><code>Clonezilla mode:
+
+❯ device-image    work with disks or partitions using images
+  device-device   work directly from a disk or partition to another disk or partition
+</code></pre></div>
+<p><strong>Step 3 — Mount the image repository</strong></p>
+<p>Choose the storage backend that exposes the Synology <code>images</code> share. Use the protocol configured for the current PXE image repository.</p>
+<div class="highlight"><pre><span></span><code>Mount Clonezilla image directory:
+
+❯ nfs_server      use NFS server
+  ssh_server      use SSH server
+  samba_server    use Samba server
+  local_dev       use local device
+</code></pre></div>
+<p>Use the Synology NAS as the image server.</p>
+<div class="highlight"><pre><span></span><code>Image repository:
+
+Server: 192.168.10.201
+Path:   /images
+</code></pre></div>
+<p>Authenticate if prompted.</p>
+<p><strong>Step 4 — Select the workstation image</strong></p>
+<p>Browse the available images and select the standard workstation baseline for the experiment.</p>
+<div class="highlight"><pre><span></span><code>Available images:
+
+❯ workstation-baseline
+  linux-mint-22-baseline
+  ubuntu-24-04-baseline
+  windows-11-admin
+</code></pre></div>
+<p>Before continuing, confirm the selected image details: expected OS, creation date, size, and included partitions.</p>
+<p><strong>Step 5 — Configure restore options</strong></p>
+<p>Use full-disk restore for normal workstation provisioning. Partition restore should only be used when you intentionally want to preserve or replace specific partitions.</p>
+<div class="highlight"><pre><span></span><code>Restore target:
+
+❯ restoredisk       restore an image to local disk
+  restoreparts      restore an image to local partitions
+</code></pre></div>
+<p>Select the target disk, usually the internal drive.</p>
+<div class="highlight"><pre><span></span><code>Target disk:
+
+❯ /dev/sda
+  /dev/nvme0n1
+</code></pre></div>
+<p>Optionally run the image integrity check before restoring.</p>
+<p><strong>Step 6 — Verify and execute</strong></p>
+<p>Review the restore summary carefully before confirming.</p>
+<div class="highlight"><pre><span></span><code>Restore summary:
+
+Source image: workstation-baseline
+Target disk:  /dev/sda
+Action:       overwrite target disk
+
+❯ Continue
+  Cancel
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Confirm the target disk before continuing. The restore operation overwrites all data on the selected disk.</p>
+</div>
+<p>Start the restore and wait until Clonezilla reports completion.</p>
+<p><strong>Step 7 — Reboot</strong></p>
+<p>When the restore is complete, reboot the workstation and remove any temporary boot override if needed.</p>
+<div class="highlight"><pre><span></span><code>Clonezilla finished:
+
+❯ Reboot
+  Poweroff
+  Enter shell
+</code></pre></div>
+<p><strong>Step 8 — Post-restore configuration</strong></p>
 <p>After the system image has been restored:</p>
 <ul>
-<li>Set the hostname (e.g., <code>workstation-01</code>)</li>
-<li>Create the <code>labadmin</code> and <code>participant</code> accounts</li>
-<li>Configure passwordless auto-login for <code>participant</code></li>
-<li>Create <code>/data</code> with correct cross-account permissions</li>
-<li>Install and configure eduroam with an assigned <code>userN</code> credential set</li>
-<li>Install SSH server and deploy authorized keys from the NAS</li>
-<li>Add the workstation to the relevant inventory file(s)</li>
-<li>Smoke test against the new host</li>
+<li>Set the hostname, e.g. <code>workstation-01</code>.</li>
+<li>Create the <code>labadmin</code> and <code>participant</code> accounts.</li>
+<li>Configure passwordless auto-login for <code>participant</code>.</li>
+<li>Create <code>/data</code> with correct cross-account permissions.</li>
+<li>Install and configure eduroam with an assigned <code>userN</code> credential set.</li>
+<li>Install SSH server and deploy authorized keys from the NAS.</li>
+<li>Add the workstation to the relevant inventory file(s).</li>
+<li>Smoke test against the new host.</li>
 </ul>
+</div>
+<div class="tabbed-block">
+<p>Use this workflow after a workstation has been configured and tested. The saved image becomes a reusable baseline on the Synology NAS.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Before saving an image, remove experiment data from <code>/data</code>, clear temporary files, and make sure no participant data or personal credentials are stored on the workstation.</p>
+</div>
+<p><strong>Step 1 — Prepare the source workstation</strong></p>
+<p>Boot into the installed operating system and verify that the machine is ready to become the reference image.</p>
+<div class="highlight"><pre><span></span><code>Pre-image checklist:
+
+❯ System boots normally
+  labadmin account works
+  participant auto-login works
+  /data exists with correct permissions
+  SSH access works
+  eduroam is configured
+  No experiment data remains in /data
+</code></pre></div>
+<p>Shut the workstation down after the checklist is complete.</p>
+<p><strong>Step 2 — Boot via PXE</strong></p>
+<p>Power on the workstation and open the boot menu immediately. Select network boot so the machine starts Clonezilla from the Synology PXE server. The boot menu key is usually one of <span class="keys"><kbd class="key-f12">F12</kbd></span>, <span class="keys"><kbd class="key-f2">F2</kbd></span>, <span class="keys"><kbd class="key-escape">Esc</kbd></span>, or <span class="keys"><kbd class="key-delete">Del</kbd></span>.</p>
+<div class="highlight"><pre><span></span><code>Boot device selection:
+
+❯ PXE / Network Boot
+  Internal SSD
+  USB Storage
+  BIOS setup
+</code></pre></div>
+<p>The workstation should boot into Clonezilla Live.</p>
+<p><strong>Step 3 — Start Clonezilla</strong></p>
+<p>Select the default language and keyboard options unless the workstation requires a different layout.</p>
+<div class="highlight"><pre><span></span><code>Clonezilla main menu:
+
+❯ Start Clonezilla
+  Enter_shell
+  Reboot
+  Poweroff
+</code></pre></div>
+<p>Then select image mode.</p>
+<div class="highlight"><pre><span></span><code>Clonezilla mode:
+
+❯ device-image    work with disks or partitions using images
+  device-device   work directly from a disk or partition to another disk or partition
+</code></pre></div>
+<p><strong>Step 4 — Mount the image repository</strong></p>
+<p>Mount the Synology <code>images</code> share as the Clonezilla image directory.</p>
+<div class="highlight"><pre><span></span><code>Mount Clonezilla image directory:
+
+❯ nfs_server      use NFS server
+  ssh_server      use SSH server
+  samba_server    use Samba server
+  local_dev       use local device
+</code></pre></div>
+<p>Use the Synology NAS as the image server.</p>
+<div class="highlight"><pre><span></span><code>Image repository:
+
+Server: 192.168.10.201
+Path:   /images
+</code></pre></div>
+<p>Authenticate if prompted.</p>
+<p><strong>Step 5 — Choose save mode</strong></p>
+<p>Select whether to save the full disk or only selected partitions. For standard workstation images, prefer saving the full disk.</p>
+<div class="highlight"><pre><span></span><code>Clonezilla action:
+
+❯ savedisk       save local disk as an image
+  saveparts      save local partitions as an image
+  restoredisk    restore an image to local disk
+  restoreparts   restore an image to local partitions
+</code></pre></div>
+<p><strong>Step 6 — Name the image</strong></p>
+<p>Choose a descriptive image name that includes the operating system, purpose, and date.</p>
+<div class="highlight"><pre><span></span><code>Image name:
+
+❯ linux-mint-22-workstation-baseline-2026-06
+  ubuntu-24-04-workstation-baseline-2026-06
+  experiment-name-workstation-image-2026-06
+</code></pre></div>
+<p>Use lowercase names with hyphens so images are easy to identify and script against.</p>
+<p><strong>Step 7 — Select the source disk</strong></p>
+<p>Select the internal disk that contains the configured workstation system.</p>
+<div class="highlight"><pre><span></span><code>Source disk:
+
+❯ /dev/sda
+  /dev/nvme0n1
+</code></pre></div>
+<p>If both <code>/dev/sda</code> and <code>/dev/nvme0n1</code> are listed, confirm which one is the workstation's internal system disk before continuing.</p>
+<p><strong>Step 8 — Configure save options</strong></p>
+<p>Use Clonezilla's default compression and filesystem check options unless there is a specific reason to change them.</p>
+<div class="highlight"><pre><span></span><code>Save options:
+
+❯ Use default compression
+  Check and repair filesystem before saving
+  Skip checking saved image
+  Encrypt image
+</code></pre></div>
+<p>For baseline images, enable image verification after saving if time allows.</p>
+<div class="highlight"><pre><span></span><code>After image is saved:
+
+❯ Check the saved image
+  Skip checking the saved image
+</code></pre></div>
+<p><strong>Step 9 — Verify and execute</strong></p>
+<p>Review the save summary carefully before confirming.</p>
+<div class="highlight"><pre><span></span><code>Save summary:
+
+Source disk: /dev/sda
+Image path:  192.168.10.201:/images
+Image name:  linux-mint-22-workstation-baseline-2026-06
+Action:      save disk image
+
+❯ Continue
+  Cancel
+</code></pre></div>
+<p>Start the image creation and wait until Clonezilla reports completion. This may take a long time depending on disk size and network speed.</p>
+<p><strong>Step 10 — Reboot and document the image</strong></p>
+<p>When the save operation is complete, reboot the workstation.</p>
+<div class="highlight"><pre><span></span><code>Clonezilla finished:
+
+❯ Reboot
+  Poweroff
+  Enter shell
+</code></pre></div>
+<p>After reboot, record the image name, source workstation, operating system, creation date, and intended use so future lab admins know which image to restore.</p>
+</div>
+</div>
+</div>
 <h2 id="accessing-and-managing-the-synology-nas">Accessing and managing the Synology NAS</h2>
 <p>Directory layout under <code>/datadump</code>
 Accessing the NAS from a workstation vs. from a personal machine

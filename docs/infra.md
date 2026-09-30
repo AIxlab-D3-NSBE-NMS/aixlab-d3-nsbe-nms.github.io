@@ -151,7 +151,7 @@ The typical setup brings a group of participants into the lab, distributed acros
 
 - A **workstation computer**, cloned from a common system image (see [PXE Server](#2-pxe-server)) so that every station is software-identical.
 - A **360° omnidirectional camera**, currently the [Meeting Owl 4+](https://owllabs.com/products/meeting-owl-4-plus), USB-C connected to the workstation.
-- Optional peripherals depending on the experiment (eye tracker, physiological sensors, VR hedasets, etc.).
+- Optional peripherals depending on the experiment (eye tracker, physiological sensors, VR hedasets, etc.). It is important to remember that eye trackers have a license for the use of Tobii Pro Lab. The app for calibration is free. 
 
 All workstations are wired into the lab [LAN](#local-network) and coordinated by a **controller machine** (`192.168.10.100`), which issues start/stop commands, monitors recording status, and triggers post-experiment backup to `datadump` on the NAS. More on controller setup can be found in [Control and Automation](#control-and-automation).
 

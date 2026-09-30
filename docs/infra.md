@@ -285,7 +285,7 @@ Workstation control across the lab is handled with [**Ansible**](https://docs.an
 
 The lab maintains two sets of Ansible artefacts, kept together with other lab tooling in a dedicated git repository:
 
-**Repository:** [`orchestra/ansible`](https://github.com/AIxlab-D3-NSBE-NMS/orchestra/tree/main/ansible)
+**Repositories:** [`orchestra/ansible`](https://github.com/AIxlab-D3-NSBE-NMS/orchestra/tree/main/ansible) and [`lab_experiment_pipeline/NewPipeline/ansible`](https://github.com/AIxlab-D3-NSBE-NMS/lab_experiment_pipeline/tree/main/NewPipeline/ansible)
 
 - **Inventory files (`inventory.ini`)** — one per experiment (or experiment configuration). Each inventory file declares which workstations participate in that experiment and groups them as needed. 
 - **Playbook files (`*.yml`)** — one per operational action. The current set covers:

@@ -20,6 +20,10 @@ Within these constraints any layout can be requested. If you are a prospective u
       <a href="https://aixlab-d3-nsbe-nms.github.io/a205_layout" target="_blank">Open in new tab ↗</a>
     </p>
 
+## Infrastructure Tips
+
+When setting up experiments that involve audio playback from computers, dividers can be requested from the Facilities team to help improve sound distribution throughout the room.
+
 ## Local Network
 
 The technical floor features 22 outlets with RJ45 ethernet ports, one per workstation. On the opposite end, these converge into a 48 port switch. 

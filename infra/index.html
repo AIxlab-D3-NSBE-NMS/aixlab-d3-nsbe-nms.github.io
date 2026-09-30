@@ -356,6 +356,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#infrastructure-tips" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Infrastructure Tips
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#local-network" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -795,6 +806,8 @@
   <a href="https://aixlab-d3-nsbe-nms.github.io/a205_layout" target="_blank">Open in new tab ↗</a>
 </p></p>
 </details>
+<h2 id="infrastructure-tips">Infrastructure Tips</h2>
+<p>When setting up experiments that involve audio playback from computers, dividers can be requested from the Facilities team to help improve sound distribution throughout the room.</p>
 <h2 id="local-network">Local Network</h2>
 <p>The technical floor features 22 outlets with RJ45 ethernet ports, one per workstation. On the opposite end, these converge into a 48 port switch. </p>
 <p>Additionally, there is a Synology NAS, used for data storage and netboot, connected to the switch.  </p>
@@ -1029,7 +1042,7 @@
 <h2 id="control-and-automation">Control and automation</h2>
 <p>Workstation control across the lab is handled with <a href="https://docs.ansible.com/"><strong>Ansible</strong></a>. Rather than logging into each machine individually to start recordings, install software, or move data, the operator runs playbooks from a single control node and Ansible executes the steps on every targeted workstation in parallel.</p>
 <p>The lab maintains two sets of Ansible artefacts, kept together with other lab tooling in a dedicated git repository:</p>
-<p><strong>Repository:</strong> <a href="https://github.com/AIxlab-D3-NSBE-NMS/orchestra/tree/main/ansible"><code>orchestra/ansible</code></a></p>
+<p><strong>Repositories:</strong> <a href="https://github.com/AIxlab-D3-NSBE-NMS/orchestra/tree/main/ansible"><code>orchestra/ansible</code></a> and <a href="https://github.com/AIxlab-D3-NSBE-NMS/lab_experiment_pipeline/tree/main/NewPipeline/ansible"><code>lab_experiment_pipeline/NewPipeline/ansible</code></a></p>
 <ul>
 <li><strong>Inventory files (<code>inventory.ini</code>)</strong> — one per experiment (or experiment configuration). Each inventory file declares which workstations participate in that experiment and groups them as needed. </li>
 <li><strong>Playbook files (<code>*.yml</code>)</strong> — one per operational action. The current set covers:<ul>
